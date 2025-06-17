@@ -18,8 +18,8 @@ services:
     container_name: sistema_mysql
     environment:
       DB_HOST: db
-      DB_USER: user
       DB_NAME: aval_acao
+      DB_USER: user
       DB_PASS: pass
     ports:
       - "3306:3306"
