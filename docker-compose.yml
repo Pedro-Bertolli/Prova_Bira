@@ -1,6 +1,6 @@
 services:
   web:
-    build: .
+    build: ./public
     container_name: sistema_web
     ports: 
       - "80:80"
@@ -10,29 +10,31 @@ services:
       - db
     networks:
       - startup_network
-    restart: unless-stopped
+    restart: always
+    environment:
+       - DB_HOST=db
+       - DB_NAME=aval_acao
+       - DB_USER=user
+       - DB_PASS=pass
 
 
   db:
     image: mysql:8.0
     container_name: sistema_mysql
     environment:
-      DB_HOST: db
-      DB_NAME: aval_acao
-      DB_USER: user
-      DB_PASS: pass
+      MYSQL_ROOT_PASSWORD: senha_do_root
+      MYSQL_DATABASE: aval_acao
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
+
     ports:
       - "3306:3306"
     volumes:
-      - db_data:/var/lib/mysql
-      - ./init.sql/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - startup_network
-    restart: unless-stopped
+    restart: always
   
-
-volumes:
-  mysql_data:
 
 
 networks:
