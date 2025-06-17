@@ -17,10 +17,10 @@ services:
     image: mysql:8.0
     container_name: sistema_mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root123
-      MYSQL_DATABASE: db
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
+      DB_HOST: db
+      DB_USER: user
+      DB_NAME: aval_acao
+      DB_PASS: pass
     ports:
       - "3306:3306"
     volumes:
