@@ -29,25 +29,6 @@ services:
     networks:
       - startup_network
     restart: unless-stopped
-
-
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: sistema_phpmyadmin
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      PMA_USER: root
-      PMA_PASSWORD: root123
-      PMA_ROOT_PASSWORD: root123
-    ports:
-      - "8080:80"
-    depends_on:
-      - db
-    networks:
-      - startup_network
-    restart: unless-stopped
   
 
 volumes:
